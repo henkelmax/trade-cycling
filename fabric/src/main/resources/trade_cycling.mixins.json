@@ -1,0 +1,18 @@
+{
+  "required": true,
+  "minVersion": "0.8.4",
+  "package": "de.maxhenkel.tradecycling.mixin",
+  "compatibilityLevel": "JAVA_16",
+  "mixins": [
+    "MerchantMenuAccessor",
+    "AbstractVillagerAccessor"
+  ],
+  "client": [
+    "ScreenAccessor",
+    "AbstractContainerScreenAccessor",
+    "KeyboardMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
