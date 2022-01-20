@@ -9,7 +9,6 @@
     "AbstractVillagerAccessor"
   ],
   "client": [
-    "ScreenAccessor",
     "AbstractContainerScreenAccessor"
   ],
   "injectors": {

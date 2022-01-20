@@ -22,7 +22,10 @@ public class FabricTradeCyclingClientMod extends TradeCyclingClientMod implement
         clientInit();
         ScreenEvents.AFTER_INIT.register((client, screen, scaledWidth, scaledHeight) -> {
             ScreenAccessor screenAccessor = (ScreenAccessor) screen;
-            onOpenScreen(screen, screenAccessor::invokeAddRenderableWidget);
+            onOpenScreen(screen, guiEventListener -> {
+                screenAccessor.getChildren().add(guiEventListener);
+                screenAccessor.getRenderables().add(guiEventListener);
+            });
         });
     }
 

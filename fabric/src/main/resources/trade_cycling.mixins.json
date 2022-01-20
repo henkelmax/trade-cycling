@@ -8,8 +8,8 @@
     "AbstractVillagerAccessor"
   ],
   "client": [
-    "ScreenAccessor",
     "AbstractContainerScreenAccessor",
+    "ScreenAccessor",
     "KeyboardMixin"
   ],
   "injectors": {
