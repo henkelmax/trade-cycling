@@ -14,12 +14,11 @@ public class ForgeTradeCyclingMod extends TradeCyclingMod {
 
     public static EventNetworkChannel CYCLE_TRADES_CHANNEL;
 
-    private final ForgeTradeCyclingClientMod clientMod;
+    private ForgeTradeCyclingClientMod clientMod;
 
     public ForgeTradeCyclingMod() {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::commonSetup);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::clientSetup);
-        clientMod = new ForgeTradeCyclingClientMod();
     }
 
     public void commonSetup(FMLCommonSetupEvent event) {
@@ -28,6 +27,7 @@ public class ForgeTradeCyclingMod extends TradeCyclingMod {
     }
 
     public void clientSetup(FMLClientSetupEvent event) {
+        clientMod = new ForgeTradeCyclingClientMod();
         clientMod.clientInit();
     }
 
