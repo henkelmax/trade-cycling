@@ -3,12 +3,14 @@ package de.maxhenkel.tradecycling.gui;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import de.maxhenkel.tradecycling.TradeCyclingMod;
+import de.maxhenkel.tradecycling.mixin.MerchantMenuAccessor;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.inventory.MerchantScreen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.inventory.MerchantMenu;
 
 import java.util.Collections;
 
@@ -28,7 +30,7 @@ public class CycleTradesButton extends Button {
 
     @Override
     public void render(PoseStack poseStack, int mouseX, int mouseY, float partialTicks) {
-        visible = screen.getMenu().showProgressBar() && screen.getMenu().getTraderXp() <= 0;
+        visible = canCycle(screen.getMenu());
         super.render(poseStack, mouseX, mouseY, partialTicks);
     }
 
@@ -44,4 +46,12 @@ public class CycleTradesButton extends Button {
             blit(poseStack, x, y, 0, 0, WIDTH, HEIGHT, 32, 32);
         }
     }
+
+    public static boolean canCycle(MerchantMenu menu) {
+        if (menu instanceof MerchantMenuAccessor m) {
+            return menu.showProgressBar() && menu.getTraderXp() <= 0 && m.getTradeContainer().getActiveOffer() == null;
+        }
+        return false;
+    }
+
 }

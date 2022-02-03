@@ -1,5 +1,6 @@
 package de.maxhenkel.tradecycling.mixin;
 
+import net.minecraft.world.inventory.MerchantContainer;
 import net.minecraft.world.inventory.MerchantMenu;
 import net.minecraft.world.item.trading.Merchant;
 import org.spongepowered.asm.mixin.Mixin;
@@ -10,5 +11,8 @@ public interface MerchantMenuAccessor {
 
     @Accessor
     Merchant getTrader();
+
+    @Accessor
+    MerchantContainer getTradeContainer();
 
 }
