@@ -7,8 +7,7 @@ import de.maxhenkel.tradecycling.mixin.MerchantMenuAccessor;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.inventory.MerchantScreen;
 import net.minecraft.client.renderer.GameRenderer;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.MerchantMenu;
 
@@ -24,7 +23,7 @@ public class CycleTradesButton extends Button {
     private MerchantScreen screen;
 
     public CycleTradesButton(int x, int y, OnPress pressable, MerchantScreen screen) {
-        super(x, y, WIDTH, HEIGHT, TextComponent.EMPTY, pressable);
+        super(x, y, WIDTH, HEIGHT, Component.empty(), pressable);
         this.screen = screen;
     }
 
@@ -41,7 +40,7 @@ public class CycleTradesButton extends Button {
         RenderSystem.setShaderTexture(0, ARROW_BUTTON);
         if (isHovered) {
             blit(poseStack, x, y, 0, 14, WIDTH, HEIGHT, 32, 32);
-            screen.renderTooltip(poseStack, Collections.singletonList(new TranslatableComponent("tooltip.trade_cycling.cycle_trades").getVisualOrderText()), mouseX, mouseY);
+            screen.renderTooltip(poseStack, Collections.singletonList(Component.translatable("tooltip.trade_cycling.cycle_trades").getVisualOrderText()), mouseX, mouseY);
         } else {
             blit(poseStack, x, y, 0, 0, WIDTH, HEIGHT, 32, 32);
         }

@@ -10,7 +10,7 @@ buildscript {
 }
 
 plugins {
-    id 'fabric-loom' version '0.10-SNAPSHOT'
+    id 'fabric-loom' version '0.12-SNAPSHOT'
     id 'com.matthewprenger.cursegradle' version '1.4.0'
     id 'com.github.johnrengelman.shadow' version '7.1.0'
 }
@@ -40,7 +40,7 @@ runClient.doFirst {
 
 dependencies {
     minecraft "com.mojang:minecraft:${mod_minecraft_version}"
-    mappings minecraft.officialMojangMappings()
+    mappings loom.officialMojangMappings()
     modImplementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
 
     Set<String> apiModules = [
@@ -146,7 +146,10 @@ shadowJar {
     relocate 'de.maxhenkel.configbuilder', "de.maxhenkel.tradecycling.configbuilder"
 }
 
-remapJar {
+prepareRemapJar {
     dependsOn shadowJar
-    input.set shadowJar.archiveFile.get()
+}
+
+remapJar {
+    input = shadowJar.archiveFile.get()
 }
