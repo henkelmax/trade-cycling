@@ -21,6 +21,6 @@ description='''The trade cycling functionality from Easy Villagers.'''
 [[dependencies.${mod_id}]]
     modId="minecraft"
     mandatory=true
-    versionRange="[${mod_minecraft_version}]"
+    versionRange="[${minecraft_version}]"
     ordering="NONE"
     side="BOTH"

@@ -16,6 +16,7 @@ plugins {
 }
 
 apply plugin: 'forge-update'
+apply plugin: 'com.modrinth.minotaur'
 
 sourceCompatibility = JavaLanguageVersion.of(java_version as int)
 targetCompatibility = JavaLanguageVersion.of(java_version as int)
@@ -39,7 +40,7 @@ runClient.doFirst {
 }
 
 dependencies {
-    minecraft "com.mojang:minecraft:${mod_minecraft_version}"
+    minecraft "com.mojang:minecraft:${minecraft_version}"
     mappings loom.officialMojangMappings()
     modImplementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
 
@@ -105,12 +106,12 @@ curseforge {
         id = curse_id
         changelogType = 'markdown'
         changelog = file("changelog.md")
-        releaseType = curse_release_type
+        releaseType = release_type
         addGameVersion curseforge_minecraft_version
         addGameVersion 'Fabric'
         addGameVersion "Java ${java_version}"
         mainArtifact(file("${buildDir}/libs/${archivesBaseName}-${version}.jar")) {
-            displayName = "[FABRIC][${mod_minecraft_version}] ${mod_name} ${mod_version}"
+            displayName = "[FABRIC][${minecraft_version}] ${mod_name} ${mod_version}"
         }
         afterEvaluate {
             uploadTask.dependsOn(remapJar)
@@ -120,6 +121,28 @@ curseforge {
         forgeGradleIntegration = false
     }
 }
+
+tasks.modrinth.configure({
+    group = 'upload'
+})
+tasks.modrinthSyncBody.configure({
+    group = 'upload'
+})
+
+
+modrinth {
+    token = file("${rootDir}/modrinth_token.txt").exists() ? file("${rootDir}/modrinth_token.txt").text : ''
+    projectId = modrinth_id
+    versionNumber = "fabric-${mod_version}"
+    versionName = "[FABRIC][${minecraft_version}] ${mod_name} ${mod_version}"
+    uploadFile = remapJar
+    versionType = release_type.toUpperCase()
+    changelog = file("changelog.md").text
+    gameVersions = [minecraft_version]
+    loaders = ['fabric']
+    syncBodyFrom = file("${rootDir}/readme.md").text
+}
+tasks.modrinth.dependsOn(build)
 
 forgeUpdate {
     def messages = []
@@ -132,11 +155,11 @@ forgeUpdate {
     serverURL = 'https://update.maxhenkel.de/'
     apiKey = file("${rootDir}/forge_update_api_key.txt").exists() ? file("${rootDir}/forge_update_api_key.txt").text : ''
     modID = mod_id
-    gameVersion = mod_minecraft_version
+    gameVersion = minecraft_version
     modLoader = 'fabric'
     modVersion = mod_version
     updateMessages = messages
-    releaseType = curse_release_type
+    releaseType = release_type
     tags = recommended == 'true' ? ['recommended'] : []
 }
 
