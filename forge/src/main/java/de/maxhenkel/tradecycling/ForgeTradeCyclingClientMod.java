@@ -2,16 +2,27 @@ package de.maxhenkel.tradecycling;
 
 import de.maxhenkel.tradecycling.config.ForgeTradeCyclingClientConfig;
 import de.maxhenkel.tradecycling.config.TradeCyclingClientConfig;
-import net.minecraftforge.client.ClientRegistry;
 import net.minecraftforge.client.event.InputEvent;
+import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
 import net.minecraftforge.client.event.ScreenEvent;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.config.ModConfig;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 public class ForgeTradeCyclingClientMod extends TradeCyclingClientMod {
+
+    public ForgeTradeCyclingClientMod() {
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::clientSetup);
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::onRegisterKeyBinds);
+    }
+
+    public void clientSetup(FMLClientSetupEvent event) {
+        clientInit();
+    }
 
     @Override
     public void clientInit() {
@@ -19,9 +30,9 @@ public class ForgeTradeCyclingClientMod extends TradeCyclingClientMod {
         MinecraftForge.EVENT_BUS.register(this);
     }
 
-    @Override
-    public void registerKeyBindings() {
-        ClientRegistry.registerKeyBinding(CYCLE_TRADES_KEY);
+    @SubscribeEvent
+    public void onRegisterKeyBinds(RegisterKeyMappingsEvent event) {
+        event.register(CYCLE_TRADES_KEY);
     }
 
     @Override
@@ -33,12 +44,12 @@ public class ForgeTradeCyclingClientMod extends TradeCyclingClientMod {
     }
 
     @SubscribeEvent
-    public void onInitScreen(ScreenEvent.InitScreenEvent.Post event) {
+    public void onInitScreen(ScreenEvent.Init event) {
         onOpenScreen(event.getScreen(), event::addListener);
     }
 
     @SubscribeEvent
-    public void onKeyInput(InputEvent.KeyInputEvent event) {
+    public void onKeyInput(InputEvent.Key event) {
         onCycleKeyPressed(event.getKey(), event.getScanCode(), event.getAction());
     }
 

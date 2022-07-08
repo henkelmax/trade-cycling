@@ -42,7 +42,9 @@ public abstract class TradeCyclingClientMod {
 
     public abstract TradeCyclingClientConfig createClientConfig();
 
-    public abstract void registerKeyBindings();
+    public void registerKeyBindings() {
+
+    }
 
     public <T extends GuiEventListener & Widget> void onOpenScreen(Screen screen, Consumer<T> eventConsumer) {
         if (!(screen instanceof MerchantScreen merchantScreen)) {

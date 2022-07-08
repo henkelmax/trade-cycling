@@ -1,5 +1,7 @@
 package de.maxhenkel.tradecycling;
 
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -18,17 +20,15 @@ public class ForgeTradeCyclingMod extends TradeCyclingMod {
 
     public ForgeTradeCyclingMod() {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::commonSetup);
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::clientSetup);
+
+        DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
+            clientMod = new ForgeTradeCyclingClientMod();
+        });
     }
 
     public void commonSetup(FMLCommonSetupEvent event) {
         init();
         registerPacket();
-    }
-
-    public void clientSetup(FMLClientSetupEvent event) {
-        clientMod = new ForgeTradeCyclingClientMod();
-        clientMod.clientInit();
     }
 
     public void registerPacket() {
