@@ -3,7 +3,6 @@ package de.maxhenkel.tradecycling;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.network.NetworkDirection;
@@ -41,7 +40,7 @@ public class ForgeTradeCyclingMod extends TradeCyclingMod {
         CYCLE_TRADES_CHANNEL.addListener(event -> {
             NetworkEvent.Context context = event.getSource().get();
             if (context.getDirection().equals(NetworkDirection.PLAY_TO_SERVER)) {
-                onCycleTrades(context.getSender());
+                context.enqueueWork(() -> onCycleTrades(context.getSender()));
             }
         });
     }

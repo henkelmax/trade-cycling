@@ -12,7 +12,7 @@ public class FabricTradeCyclingMod extends TradeCyclingMod implements ModInitial
     }
 
     private void registerPacket() {
-        ServerPlayNetworking.registerGlobalReceiver(TradeCyclingMod.CYCLE_TRADES_PACKET, (server, player, handler, buf, responseSender) -> onCycleTrades(player));
+        ServerPlayNetworking.registerGlobalReceiver(TradeCyclingMod.CYCLE_TRADES_PACKET, (server, player, handler, buf, responseSender) -> server.execute(() -> onCycleTrades(player)));
     }
 
 }
