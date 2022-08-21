@@ -1,1 +1,1 @@
-- Updated to 1.19.1
+- Fixed visual desync when cycling discounted trades
