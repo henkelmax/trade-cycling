@@ -2,11 +2,11 @@
   "required": true,
   "minVersion": "0.8.4",
   "package": "de.maxhenkel.tradecycling.mixin",
-  "compatibilityLevel": "JAVA_16",
+  "compatibilityLevel": "JAVA_17",
   "refmap": "trade_cycling.refmap.json",
   "mixins": [
     "MerchantMenuAccessor",
-    "AbstractVillagerAccessor"
+    "VillagerAccessor"
   ],
   "client": [
     "AbstractContainerScreenAccessor"
