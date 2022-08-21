@@ -57,7 +57,7 @@ dependencies {
         include(modImplementation(fabricApi.module(it, fabric_version)))
     }
 
-    implementation project(':common')
+    implementation project(path: ':common', configuration: 'namedElements')
 
     implementation 'com.google.code.findbugs:jsr305:3.0.2'
 
