@@ -1,1 +1,1 @@
-- Updated Forge version
+- Fixed visual desync when cycling discounted trades
