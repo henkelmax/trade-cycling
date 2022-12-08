@@ -1,6 +1,6 @@
 package de.maxhenkel.tradecycling.mixin;
 
-import net.minecraft.client.gui.components.Widget;
+import net.minecraft.client.gui.components.Renderable;
 import net.minecraft.client.gui.components.events.GuiEventListener;
 import net.minecraft.client.gui.screens.Screen;
 import org.spongepowered.asm.mixin.Mixin;
@@ -15,6 +15,6 @@ public interface ScreenAccessor {
     List<GuiEventListener> getChildren();
 
     @Accessor
-    List<Widget> getRenderables();
+    List<Renderable> getRenderables();
 
 }

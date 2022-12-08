@@ -6,7 +6,7 @@ import de.maxhenkel.tradecycling.mixin.AbstractContainerScreenAccessor;
 import io.netty.buffer.Unpooled;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.components.Widget;
+import net.minecraft.client.gui.components.Renderable;
 import net.minecraft.client.gui.components.events.GuiEventListener;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.MerchantScreen;
@@ -46,7 +46,7 @@ public abstract class TradeCyclingClientMod {
 
     }
 
-    public <T extends GuiEventListener & Widget> void onOpenScreen(Screen screen, Consumer<T> eventConsumer) {
+    public <T extends GuiEventListener & Renderable> void onOpenScreen(Screen screen, Consumer<T> eventConsumer) {
         if (!(screen instanceof MerchantScreen merchantScreen)) {
             return;
         }
