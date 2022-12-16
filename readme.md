@@ -2,11 +2,7 @@
 
 [CurseForge](https://www.curseforge.com/minecraft/mc-mods/trade-cycling)
 |
-[ModRepo](https://modrepo.de/minecraft/trade_cycling/overview)
-|
 [GitHub](https://github.com/henkelmax/trade-cycling)
-|
-[FAQ](https://modrepo.de/minecraft/trade_cycling/faq)
 
 ---
 
