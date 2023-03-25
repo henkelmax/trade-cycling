@@ -17,7 +17,6 @@ plugins {
     id "com.github.johnrengelman.shadow" version "7.1.0"
 }
 
-apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'forge-update'
 apply plugin: 'org.spongepowered.mixin'
 apply plugin: 'com.modrinth.minotaur'
@@ -32,11 +31,6 @@ minecraft {
     mappings channel: 'official', version: minecraft_version
 
     runs {
-        all {
-            lazyToken('minecraft_classpath') {
-                configurations.shadow.copyRecursive().resolve().collect { it.absolutePath }.join(File.pathSeparator)
-            }
-        }
         client {
             workingDirectory project.file('run')
             property 'forge.logging.console.level', 'debug'
@@ -59,6 +53,10 @@ repositories {
 
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
+configurations {
+    shadowMc.extendsFrom minecraftLibrary
+}
+
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
 
@@ -70,8 +68,8 @@ dependencies {
 
     annotationProcessor 'org.spongepowered:mixin:0.8.4:processor'
 
-    implementation "de.maxhenkel.configbuilder:configbuilder:${configbuilder_version}"
-    shadow "de.maxhenkel.configbuilder:configbuilder:${configbuilder_version}"
+    minecraftLibrary "de.maxhenkel.configbuilder:configbuilder:${configbuilder_version}"
+    shadowMc "de.maxhenkel.configbuilder:configbuilder:${configbuilder_version}"
 }
 
 mixin {
@@ -173,7 +171,7 @@ forgeUpdate {
 jar.finalizedBy('reobfJar')
 
 shadowJar {
-    configurations = [project.configurations.shadow]
+    configurations = [project.configurations.shadowMc]
     classifier ''
     relocate 'de.maxhenkel.configbuilder', "de.maxhenkel.tradecycling.configbuilder"
 }
