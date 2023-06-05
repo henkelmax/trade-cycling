@@ -1,15 +1,8 @@
-buildscript {
-    repositories {
-        mavenCentral()
-        maven { url = 'https://repo.spongepowered.org/repository/maven-public/' }
-        mavenLocal()
-    }
+plugins {
+    id 'java'
 }
 
-plugins {
-    id "java"
-    id 'fabric-loom' version '1.0-SNAPSHOT'
-}
+apply plugin: 'fabric-loom'
 
 sourceCompatibility = JavaLanguageVersion.of(java_version as int)
 targetCompatibility = JavaLanguageVersion.of(java_version as int)
@@ -17,14 +10,11 @@ targetCompatibility = JavaLanguageVersion.of(java_version as int)
 repositories {
     mavenCentral()
     maven { url = 'https://maven.fabricmc.net/' }
-    maven {
-        name = "henkelmax.public"
-        url = 'https://maven.maxhenkel.de/repository/public'
-    }
+    maven { url = 'https://maven.maxhenkel.de/repository/public' }
     mavenLocal()
 }
 
-task prepareWorkspace {
+tasks.register('prepareWorkspace') {
 
 }
 
