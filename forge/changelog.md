@@ -1,2 +1,1 @@
-- Switch to NeoGradle
-- Fixed cycle button appearing twice
+- Fixed potential crash

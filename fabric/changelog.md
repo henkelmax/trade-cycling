@@ -1,1 +1,1 @@
-- Switch to NeoGradle
+- Fixed potential crash

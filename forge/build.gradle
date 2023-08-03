@@ -112,7 +112,7 @@ tasks.withType(JavaCompile) {
 }
 
 shadowJar {
-    configurations = [project.configurations.shadow]
+    configurations = [project.configurations.shadowMc]
     archiveClassifier = ''
     relocate 'de.maxhenkel.configbuilder', "de.maxhenkel.${mod_id}.configbuilder"
 }
