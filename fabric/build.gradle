@@ -99,6 +99,7 @@ curseforge {
         releaseType = release_type
         addGameVersion curseforge_minecraft_version
         addGameVersion 'Fabric'
+        addGameVersion 'Quilt'
         addGameVersion "Java ${java_version}"
         mainArtifact(file("${buildDir}/libs/${archivesBaseName}-${version}.jar")) {
             displayName = "[FABRIC][${minecraft_version}] ${mod_name} ${mod_version}"
@@ -127,7 +128,7 @@ modrinth {
     versionType = release_type.toUpperCase()
     changelog = file('changelog.md').text
     gameVersions = [minecraft_version]
-    loaders = ['fabric']
+    loaders = ['fabric', 'quilt']
     syncBodyFrom = file("${rootDir}/readme.md").text
 }
 tasks.modrinth.dependsOn(build)
