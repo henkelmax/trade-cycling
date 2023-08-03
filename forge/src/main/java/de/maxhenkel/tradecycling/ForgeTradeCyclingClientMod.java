@@ -44,7 +44,7 @@ public class ForgeTradeCyclingClientMod extends TradeCyclingClientMod {
     }
 
     @SubscribeEvent
-    public void onInitScreen(ScreenEvent.Init event) {
+    public void onInitScreen(ScreenEvent.Init.Post event) {
         onOpenScreen(event.getScreen(), event::addListener);
     }
 

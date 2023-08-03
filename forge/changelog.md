@@ -1,1 +1,2 @@
-- Updated to 1.20.1
+- Switch to NeoGradle
+- Fixed cycle button appearing twice

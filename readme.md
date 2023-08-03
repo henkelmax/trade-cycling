@@ -1,8 +1,9 @@
-# Trade Cycling ![](http://cf.way2muchnoise.eu/full_570431_downloads.svg) ![](http://cf.way2muchnoise.eu/versions/570431.svg)
+# Trade Cycling
 
-[CurseForge](https://www.curseforge.com/minecraft/mc-mods/trade-cycling)
-|
-[GitHub](https://github.com/henkelmax/trade-cycling)
+## Links
+
+- [Modrinth](https://modrinth.com/mod/trade-cycling)
+- [CurseForge](https://www.curseforge.com/minecraft/mc-mods/trade-cycling)
 
 ---
 

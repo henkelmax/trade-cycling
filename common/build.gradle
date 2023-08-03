@@ -1,17 +1,11 @@
-plugins {
-    id 'java'
-}
-
 apply plugin: 'fabric-loom'
 
-sourceCompatibility = JavaLanguageVersion.of(java_version as int)
-targetCompatibility = JavaLanguageVersion.of(java_version as int)
+java.toolchain.languageVersion = JavaLanguageVersion.of(java_version as int)
 
 repositories {
     mavenCentral()
     maven { url = 'https://maven.fabricmc.net/' }
     maven { url = 'https://maven.maxhenkel.de/repository/public' }
-    mavenLocal()
 }
 
 tasks.register('prepareWorkspace') {
