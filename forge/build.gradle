@@ -135,9 +135,6 @@ curseforge {
         addGameVersion "Java ${java_version}"
         mainArtifact(jar) {
             displayName = "[${minecraft_version}] ${mod_name} ${mod_version}"
-            relations {
-                optionalDependency 'jade'
-            }
         }
     }
 }
@@ -158,9 +155,6 @@ modrinth {
     changelog = file('changelog.md').text
     gameVersions = [minecraft_version]
     loaders = ['forge', 'neoforge']
-    dependencies {
-        optional.project 'jade'
-    }
 }
 tasks.modrinth.dependsOn(build)
 
