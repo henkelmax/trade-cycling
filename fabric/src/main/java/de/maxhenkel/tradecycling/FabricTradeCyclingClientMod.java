@@ -4,10 +4,13 @@ import de.maxhenkel.configbuilder.ConfigBuilder;
 import de.maxhenkel.tradecycling.config.FabricTradeCyclingClientConfig;
 import de.maxhenkel.tradecycling.config.TradeCyclingClientConfig;
 import de.maxhenkel.tradecycling.mixin.ScreenAccessor;
+import io.netty.buffer.Unpooled;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.client.screen.v1.ScreenEvents;
 import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.network.FriendlyByteBuf;
 
 public class FabricTradeCyclingClientMod extends TradeCyclingClientMod implements ClientModInitializer {
 
@@ -32,6 +35,11 @@ public class FabricTradeCyclingClientMod extends TradeCyclingClientMod implement
     @Override
     public void registerKeyBindings() {
         KeyBindingHelper.registerKeyBinding(CYCLE_TRADES_KEY);
+    }
+
+    @Override
+    public void sendCycleTradesPacket() {
+        ClientPlayNetworking.send(TradeCyclingMod.CYCLE_TRADES_PACKET, new FriendlyByteBuf(Unpooled.buffer()));
     }
 
     @Override

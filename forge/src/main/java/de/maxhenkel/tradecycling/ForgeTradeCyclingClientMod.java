@@ -2,6 +2,10 @@ package de.maxhenkel.tradecycling;
 
 import de.maxhenkel.tradecycling.config.ForgeTradeCyclingClientConfig;
 import de.maxhenkel.tradecycling.config.TradeCyclingClientConfig;
+import io.netty.buffer.Unpooled;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.multiplayer.ClientPacketListener;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
 import net.minecraftforge.client.event.ScreenEvent;
@@ -28,6 +32,14 @@ public class ForgeTradeCyclingClientMod extends TradeCyclingClientMod {
     public void clientInit() {
         super.clientInit();
         MinecraftForge.EVENT_BUS.register(this);
+    }
+
+    @Override
+    public void sendCycleTradesPacket() {
+        ClientPacketListener connection = Minecraft.getInstance().getConnection();
+        if (connection != null) {
+            ForgeTradeCyclingMod.CYCLE_TRADES_CHANNEL.send(new FriendlyByteBuf(Unpooled.buffer()), connection.getConnection());
+        }
     }
 
     @SubscribeEvent

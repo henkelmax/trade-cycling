@@ -1,14 +1,14 @@
 package de.maxhenkel.tradecycling;
 
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.event.network.CustomPayloadEvent;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.network.ChannelBuilder;
+import net.minecraftforge.network.EventNetworkChannel;
 import net.minecraftforge.network.NetworkDirection;
-import net.minecraftforge.network.NetworkEvent;
-import net.minecraftforge.network.NetworkRegistry;
-import net.minecraftforge.network.event.EventNetworkChannel;
 
 @Mod(TradeCyclingMod.MODID)
 public class ForgeTradeCyclingMod extends TradeCyclingMod {
@@ -31,14 +31,13 @@ public class ForgeTradeCyclingMod extends TradeCyclingMod {
     }
 
     public void registerPacket() {
-        CYCLE_TRADES_CHANNEL = NetworkRegistry.newEventChannel(
-                TradeCyclingMod.CYCLE_TRADES_PACKET,
-                () -> NetworkRegistry.ACCEPTVANILLA,
-                NetworkRegistry.ACCEPTVANILLA::equals,
-                NetworkRegistry.ACCEPTVANILLA::equals
-        );
+        CYCLE_TRADES_CHANNEL = ChannelBuilder.named(CYCLE_TRADES_PACKET)
+                .networkProtocolVersion(0)
+                .acceptedVersions((status, version) -> true)
+                .optional()
+                .eventNetworkChannel();
         CYCLE_TRADES_CHANNEL.addListener(event -> {
-            NetworkEvent.Context context = event.getSource().get();
+            CustomPayloadEvent.Context context = event.getSource();
             if (context.getDirection().equals(NetworkDirection.PLAY_TO_SERVER)) {
                 context.enqueueWork(() -> onCycleTrades(context.getSender()));
             }

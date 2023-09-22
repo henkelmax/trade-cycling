@@ -3,17 +3,13 @@ package de.maxhenkel.tradecycling;
 import de.maxhenkel.tradecycling.config.TradeCyclingClientConfig;
 import de.maxhenkel.tradecycling.gui.CycleTradesButton;
 import de.maxhenkel.tradecycling.mixin.AbstractContainerScreenAccessor;
-import io.netty.buffer.Unpooled;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.Renderable;
 import net.minecraft.client.gui.components.events.GuiEventListener;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.MerchantScreen;
-import net.minecraft.client.multiplayer.ClientPacketListener;
 import net.minecraft.client.resources.sounds.SimpleSoundInstance;
-import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.network.protocol.game.ServerboundCustomPayloadPacket;
 import net.minecraft.sounds.SoundEvents;
 import org.lwjgl.glfw.GLFW;
 
@@ -32,13 +28,7 @@ public abstract class TradeCyclingClientMod {
         registerKeyBindings();
     }
 
-    public static void sendCycleTradesPacket() {
-        FriendlyByteBuf buffer = new FriendlyByteBuf(Unpooled.buffer());
-        ClientPacketListener connection = Minecraft.getInstance().getConnection();
-        if (connection != null) {
-            connection.send(new ServerboundCustomPayloadPacket(TradeCyclingMod.CYCLE_TRADES_PACKET, buffer));
-        }
-    }
+    public abstract void sendCycleTradesPacket();
 
     public abstract TradeCyclingClientConfig createClientConfig();
 
