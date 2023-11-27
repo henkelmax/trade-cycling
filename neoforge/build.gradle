@@ -152,7 +152,7 @@ modrinth {
     gameVersions = [minecraft_version]
     loaders = ['neoforge']
 }
-tasks.modrinth.dependsOn(shadowJar)
+tasks.modrinth.dependsOn(jar)
 
 modUpdate {
     serverURL = 'https://update.maxhenkel.de/'
