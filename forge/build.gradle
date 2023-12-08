@@ -1,5 +1,5 @@
 plugins {
-    id 'net.neoforged.gradle' version '6.0.+'
+    id 'net.minecraftforge.gradle' version '[6.0.16,6.2)'
     id 'org.spongepowered.mixin' version "${mixingradle_version}"
 }
 
@@ -24,7 +24,7 @@ java.toolchain.languageVersion = JavaLanguageVersion.of(java_version as int)
 
 minecraft {
     mappings channel: 'official', version: minecraft_version
-
+    copyIdeResources = true
     runs {
         client {
             workingDirectory file('run')
@@ -58,7 +58,7 @@ configurations {
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
 
-    implementation(project(':common')){
+    compileOnly(project(':common')){
         transitive false
     }
 
@@ -74,7 +74,7 @@ mixin {
     add sourceSets.main, "${mod_id}.refmap.json"
 }
 
-jar {
+tasks.named('jar', Jar).configure {
     manifest {
         attributes(['Specification-Title'     : mod_name,
                     'Specification-Vendor'    : mod_vendor,
@@ -86,6 +86,13 @@ jar {
                     'MixinConnector'          : 'de.maxhenkel.tradecycling.MixinConnector'
         ])
     }
+    finalizedBy 'reobfJar'
+}
+
+sourceSets.each {
+    def dir = layout.buildDirectory.dir("sourcesSets/$it.name")
+    it.output.resourcesDir = dir
+    it.java.destinationDirectory = dir
 }
 
 processResources {
@@ -138,6 +145,7 @@ curseforge {
         }
     }
 }
+tasks.curseforge.dependsOn(shadowJar)
 
 tasks.modrinth.configure({
     group = 'upload'
@@ -156,7 +164,7 @@ modrinth {
     gameVersions = [minecraft_version]
     loaders = ['forge']
 }
-tasks.modrinth.dependsOn(build)
+tasks.modrinth.dependsOn(shadowJar)
 
 modUpdate {
     serverURL = 'https://update.maxhenkel.de/'
