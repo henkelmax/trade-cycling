@@ -9,7 +9,7 @@ authors="Max Henkel"
 modId="trade_cycling"
 version="${mod_version}"
 displayName="Trade Cycling"
-updateJSONURL="https://update.maxhenkel.de/fneoorge/trade_cycling"
+updateJSONURL="https://update.maxhenkel.de/neoforge/trade_cycling"
 description='''The trade cycling functionality from Easy Villagers.'''
 [[dependencies.trade_cycling]]
     modId="neoforge"
