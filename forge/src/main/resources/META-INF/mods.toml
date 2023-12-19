@@ -1,24 +1,23 @@
 modLoader="javafml"
-loaderVersion="${mod_loader_version}"
+loaderVersion="*"
 license="All rights reserved"
 issueTrackerURL="https://github.com/henkelmax/trade-cycling/issues"
 displayURL="https://www.curseforge.com/minecraft/mc-mods/trade-cycling"
 logoFile="icon.png"
-# credits=""
 authors="Max Henkel"
 [[mods]]
-modId="${mod_id}"
+modId="trade_cycling"
 version="${mod_version}"
-displayName="${mod_name}"
-updateJSONURL="https://maxhenkel.de/update/trade_cycling.json"
+displayName="Trade Cycling"
+updateJSONURL="https://update.maxhenkel.de/neoforge/trade_cycling"
 description='''The trade cycling functionality from Easy Villagers.'''
-[[dependencies.${mod_id}]]
+[[dependencies.trade_cycling]]
     modId="forge"
     mandatory=true
-    versionRange="${mod_forge_version}"
+    versionRange="${forge_dependency}"
     ordering="NONE"
     side="BOTH"
-[[dependencies.${mod_id}]]
+[[dependencies.trade_cycling]]
     modId="minecraft"
     mandatory=true
     versionRange="[${minecraft_version}]"

@@ -1,1 +1,2 @@
-- Fixed visual desync when cycling discounted trades
+- Updated update checker URL
+- Updated config builder
