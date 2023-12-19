@@ -36,7 +36,9 @@ public class FabricTradeCyclingClientMod extends TradeCyclingClientMod implement
 
     @Override
     public TradeCyclingClientConfig createClientConfig() {
-        return ConfigBuilder.build(FabricLoader.getInstance().getConfigDir().resolve(TradeCyclingMod.MODID).resolve("trade_cycling.properties"), true, FabricTradeCyclingClientConfig::new);
+        return ConfigBuilder.builder(FabricTradeCyclingClientConfig::new)
+                .path(FabricLoader.getInstance().getConfigDir().resolve(TradeCyclingMod.MODID).resolve("trade_cycling.properties"))
+                .build();
     }
 
     public static FabricTradeCyclingClientMod instance() {
