@@ -1,1 +1,2 @@
-- Ported to NeoForge
+- Updated update checker URL
+- Updated config builder

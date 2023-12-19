@@ -1,1 +1,2 @@
-- Updated to 1.20.2
+- Updated update checker URL
+- Updated config builder
