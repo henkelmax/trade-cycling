@@ -1,23 +1,4 @@
+apply plugin: 'com.github.johnrengelman.shadow'
 apply plugin: 'fabric-loom'
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(java_version as int)
-
-repositories {
-    mavenCentral()
-    maven { url = 'https://maven.fabricmc.net/' }
-    maven { url = 'https://maven.maxhenkel.de/repository/public' }
-}
-
-tasks.register('prepareWorkspace') {
-
-}
-
-dependencies {
-    minecraft "com.mojang:minecraft:${minecraft_version}"
-    mappings loom.officialMojangMappings()
-    modImplementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
-
-    implementation 'com.google.code.findbugs:jsr305:3.0.2'
-
-    implementation "de.maxhenkel.configbuilder:configbuilder:${configbuilder_version}"
-}
+apply from: "https://raw.githubusercontent.com/henkelmax/mod-gradle-scripts/${mod_gradle_script_version}/mod.gradle"

@@ -7,7 +7,7 @@ public class MixinConnector implements IMixinConnector {
 
     @Override
     public void connect() {
-        Mixins.addConfiguration("assets/" + TradeCyclingMod.MODID + "/trade_cycling.mixins.json");
+        Mixins.addConfiguration("trade_cycling.mixins.json");
     }
 
 }
