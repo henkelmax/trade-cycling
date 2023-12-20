@@ -1,25 +1,25 @@
-modLoader="javafml"
-loaderVersion="*"
-license="All rights reserved"
-issueTrackerURL="https://github.com/henkelmax/trade-cycling/issues"
-displayURL="https://www.curseforge.com/minecraft/mc-mods/trade-cycling"
-logoFile="icon.png"
-authors="Max Henkel"
+modLoader = "javafml"
+loaderVersion = "*"
+license = "All rights reserved"
+issueTrackerURL = "https://github.com/henkelmax/trade-cycling/issues"
 [[mods]]
-modId="trade_cycling"
-version="${mod_version}"
-displayName="Trade Cycling"
-updateJSONURL="https://update.maxhenkel.de/forge/trade_cycling"
-description='''The trade cycling functionality from Easy Villagers.'''
+modId = "trade_cycling"
+version = "${mod_version}"
+displayName = "Trade Cycling"
+updateJSONURL = "https://update.maxhenkel.de/forge/trade_cycling"
+displayURL = "https://www.curseforge.com/minecraft/mc-mods/trade-cycling"
+logoFile = "icon.png"
+authors = "Max Henkel"
+description = '''The trade cycling functionality from Easy Villagers.'''
 [[dependencies.trade_cycling]]
-    modId="forge"
-    mandatory=true
-    versionRange="${forge_dependency}"
-    ordering="NONE"
-    side="BOTH"
+modId = "forge"
+mandatory = true
+versionRange = "${forge_dependency}"
+ordering = "NONE"
+side = "BOTH"
 [[dependencies.trade_cycling]]
-    modId="minecraft"
-    mandatory=true
-    versionRange="[${minecraft_version}]"
-    ordering="NONE"
-    side="BOTH"
+modId = "minecraft"
+mandatory = true
+versionRange = "[${minecraft_version}]"
+ordering = "NONE"
+side = "BOTH"
