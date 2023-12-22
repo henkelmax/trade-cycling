@@ -30,7 +30,6 @@ public class ForgeTradeCyclingClientMod extends TradeCyclingClientMod {
         MinecraftForge.EVENT_BUS.register(this);
     }
 
-    @SubscribeEvent
     public void onRegisterKeyBinds(RegisterKeyMappingsEvent event) {
         event.register(CYCLE_TRADES_KEY);
     }
