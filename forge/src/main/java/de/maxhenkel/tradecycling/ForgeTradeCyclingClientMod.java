@@ -42,7 +42,6 @@ public class ForgeTradeCyclingClientMod extends TradeCyclingClientMod {
         }
     }
 
-    @SubscribeEvent
     public void onRegisterKeyBinds(RegisterKeyMappingsEvent event) {
         event.register(CYCLE_TRADES_KEY);
     }

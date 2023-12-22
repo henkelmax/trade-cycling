@@ -1,2 +1,2 @@
-- Updated update checker URL
-- Updated config builder
+- Fixed crash when starting the client
+- Updated NeoForge

@@ -13,13 +13,13 @@ authors = "Max Henkel"
 description = '''The trade cycling functionality from Easy Villagers.'''
 [[dependencies.trade_cycling]]
 modId = "neoforge"
-mandatory = true
+type = "required"
 versionRange = "${neoforge_dependency}"
 ordering = "NONE"
 side = "BOTH"
 [[dependencies.trade_cycling]]
 modId = "minecraft"
-mandatory = true
+type = "required"
 versionRange = "[${minecraft_version}]"
 ordering = "NONE"
 side = "BOTH"
