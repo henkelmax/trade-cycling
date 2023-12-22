@@ -1,2 +1,0 @@
-- Updated update checker URL
-- Updated config builder
