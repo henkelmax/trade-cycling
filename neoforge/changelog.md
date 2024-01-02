@@ -1,2 +1,1 @@
-- Fixed crash when starting the client
-- Updated NeoForge
+- Updated Mexican Spanish translation

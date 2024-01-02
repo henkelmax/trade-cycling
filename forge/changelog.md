@@ -1,1 +1,1 @@
-- Fixed crash when starting the client
+- Updated Mexican Spanish translation
