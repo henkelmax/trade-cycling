@@ -1,1 +1,1 @@
-- Updated Mexican Spanish translation
+- Updated to NeoForges new networking system

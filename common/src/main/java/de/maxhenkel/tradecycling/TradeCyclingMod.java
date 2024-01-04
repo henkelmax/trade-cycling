@@ -8,6 +8,8 @@ import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.inventory.MerchantMenu;
 import net.minecraft.world.item.trading.Merchant;
 
+import javax.annotation.Nullable;
+
 public abstract class TradeCyclingMod {
 
     public static final String MODID = "trade_cycling";
@@ -17,7 +19,10 @@ public abstract class TradeCyclingMod {
 
     }
 
-    public static void onCycleTrades(ServerPlayer player) {
+    public static void onCycleTrades(@Nullable ServerPlayer player) {
+        if (player == null) {
+            return;
+        }
         if (!(player.containerMenu instanceof MerchantMenuAccessor merchantAccessor)) {
             return;
         }
