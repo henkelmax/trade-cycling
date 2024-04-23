@@ -1,6 +1,8 @@
 package de.maxhenkel.tradecycling;
 
+import de.maxhenkel.tradecycling.net.CycleTradesPacket;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 
 public class FabricTradeCyclingMod extends TradeCyclingMod implements ModInitializer {
@@ -12,7 +14,8 @@ public class FabricTradeCyclingMod extends TradeCyclingMod implements ModInitial
     }
 
     private void registerPacket() {
-        ServerPlayNetworking.registerGlobalReceiver(TradeCyclingMod.CYCLE_TRADES_PACKET, (server, player, handler, buf, responseSender) -> server.execute(() -> onCycleTrades(player)));
+        PayloadTypeRegistry.playC2S().register(CycleTradesPacket.CYCLE_TRADES, CycleTradesPacket.CODEC);
+        ServerPlayNetworking.registerGlobalReceiver(CycleTradesPacket.CYCLE_TRADES, (payload, context) -> context.player().server.execute(() -> onCycleTrades(context.player())));
     }
 
 }

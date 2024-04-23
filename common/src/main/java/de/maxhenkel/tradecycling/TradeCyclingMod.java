@@ -2,7 +2,6 @@ package de.maxhenkel.tradecycling;
 
 import de.maxhenkel.tradecycling.mixin.VillagerAccessor;
 import de.maxhenkel.tradecycling.mixin.MerchantMenuAccessor;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.inventory.MerchantMenu;
@@ -13,7 +12,6 @@ import javax.annotation.Nullable;
 public abstract class TradeCyclingMod {
 
     public static final String MODID = "trade_cycling";
-    public static final ResourceLocation CYCLE_TRADES_PACKET = new ResourceLocation(MODID, "cycle_trades");
 
     public void init() {
 
