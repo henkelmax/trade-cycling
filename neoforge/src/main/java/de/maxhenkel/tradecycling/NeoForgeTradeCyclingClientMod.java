@@ -2,11 +2,13 @@ package de.maxhenkel.tradecycling;
 
 import de.maxhenkel.tradecycling.config.NeoForgeTradeCyclingClientConfig;
 import de.maxhenkel.tradecycling.config.TradeCyclingClientConfig;
+import de.maxhenkel.tradecycling.net.CycleTradesPacket;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientPacketListener;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.ModLoadingContext;
+import net.neoforged.fml.ModContainer;
+import net.neoforged.fml.ModList;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.InputEvent;
@@ -37,7 +39,7 @@ public class NeoForgeTradeCyclingClientMod extends TradeCyclingClientMod {
     public void sendCycleTradesPacket() {
         ClientPacketListener connection = Minecraft.getInstance().getConnection();
         if (connection != null) {
-            PacketDistributor.SERVER.noArg().send(new NeoForgeTradeCyclingMod.WrappedCycleTradesPacket());
+            PacketDistributor.sendToServer(new CycleTradesPacket());
         }
     }
 
@@ -49,7 +51,8 @@ public class NeoForgeTradeCyclingClientMod extends TradeCyclingClientMod {
     public TradeCyclingClientConfig createClientConfig() {
         ModConfigSpec.Builder builder = new ModConfigSpec.Builder();
         NeoForgeTradeCyclingClientConfig config = new NeoForgeTradeCyclingClientConfig(builder);
-        ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, builder.build());
+        ModContainer modContainer = ModList.get().getModContainerById(TradeCyclingMod.MODID).orElseThrow(() -> new RuntimeException("Could not find mod %s".formatted(TradeCyclingMod.MODID)));
+        modContainer.registerConfig(ModConfig.Type.CLIENT, builder.build());
         return config;
     }
 
