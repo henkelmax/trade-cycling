@@ -17,3 +17,9 @@ processResources {
                 'minecraft_version': minecraft_version
     }
 }
+
+minecraft.reobf = false
+
+dependencies {
+    implementation('net.sf.jopt-simple:jopt-simple:5.0.4') { version { strictly '5.0.4' } }
+}

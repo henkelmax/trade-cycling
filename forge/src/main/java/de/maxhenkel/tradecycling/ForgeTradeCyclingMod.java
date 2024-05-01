@@ -1,5 +1,6 @@
 package de.maxhenkel.tradecycling;
 
+import de.maxhenkel.tradecycling.net.CycleTradesPacket;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.event.network.CustomPayloadEvent;
 import net.minecraftforge.fml.DistExecutor;
@@ -31,7 +32,7 @@ public class ForgeTradeCyclingMod extends TradeCyclingMod {
     }
 
     public void registerPacket() {
-        CYCLE_TRADES_CHANNEL = ChannelBuilder.named(CYCLE_TRADES_PACKET)
+        CYCLE_TRADES_CHANNEL = ChannelBuilder.named(CycleTradesPacket.CYCLE_TRADES.id())
                 .networkProtocolVersion(0)
                 .acceptedVersions((status, version) -> true)
                 .optional()
