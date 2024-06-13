@@ -9,7 +9,6 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.network.ChannelBuilder;
 import net.minecraftforge.network.EventNetworkChannel;
-import net.minecraftforge.network.NetworkDirection;
 
 @Mod(TradeCyclingMod.MODID)
 public class ForgeTradeCyclingMod extends TradeCyclingMod {
@@ -39,7 +38,7 @@ public class ForgeTradeCyclingMod extends TradeCyclingMod {
                 .eventNetworkChannel();
         CYCLE_TRADES_CHANNEL.addListener(event -> {
             CustomPayloadEvent.Context context = event.getSource();
-            if (context.getDirection().equals(NetworkDirection.PLAY_TO_SERVER)) {
+            if (context.isServerSide()) {
                 context.enqueueWork(() -> onCycleTrades(context.getSender()));
             }
         });

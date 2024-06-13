@@ -18,7 +18,7 @@ import java.util.function.Consumer;
 
 public class CycleTradesButton extends AbstractButton {
 
-    private static final ResourceLocation ARROW_BUTTON = new ResourceLocation(TradeCyclingMod.MODID, "textures/cycle_trades.png");
+    private static final ResourceLocation ARROW_BUTTON = ResourceLocation.fromNamespaceAndPath(TradeCyclingMod.MODID, "textures/cycle_trades.png");
 
     public static final int WIDTH = 18;
     public static final int HEIGHT = 14;

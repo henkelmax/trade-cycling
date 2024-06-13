@@ -8,7 +8,7 @@ import net.minecraft.resources.ResourceLocation;
 
 public class CycleTradesPacket implements CustomPacketPayload {
 
-    public static final Type<CycleTradesPacket> CYCLE_TRADES = new CustomPacketPayload.Type<>(new ResourceLocation(TradeCyclingMod.MODID, "cycle_trades"));
+    public static final Type<CycleTradesPacket> CYCLE_TRADES = new CustomPacketPayload.Type<>(ResourceLocation.fromNamespaceAndPath(TradeCyclingMod.MODID, "cycle_trades"));
 
     public static final StreamCodec<RegistryFriendlyByteBuf, CycleTradesPacket> CODEC = new StreamCodec<>() {
         @Override
