@@ -1,1 +1,2 @@
-- Updated Mexican Spanish translation
+- Updated dependencies
+- Fixed crash
