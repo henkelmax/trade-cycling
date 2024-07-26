@@ -1,1 +1,2 @@
-- Fixed jar being reobfuscated
+- Updated dependencies
+- Fixed crash
