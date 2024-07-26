@@ -1,1 +1,1 @@
-MixinConnector: de.maxhenkel.tradecycling.MixinConnector
+MixinConfigs: trade_cycling.mixins.json
