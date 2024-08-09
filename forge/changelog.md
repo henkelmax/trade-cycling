@@ -1,2 +1,1 @@
-- Updated dependencies
-- Fixed crash
+- Updated to 1.21.1
