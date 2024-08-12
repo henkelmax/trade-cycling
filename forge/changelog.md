@@ -1,2 +1,1 @@
-- Updated dependencies
-- Fixed crash
+- Added Traditional Chinese translation
