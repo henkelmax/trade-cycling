@@ -1,2 +1,1 @@
-- Added Portuguese translation
-- Added Turkish translation
+- Updated to 1.21.2

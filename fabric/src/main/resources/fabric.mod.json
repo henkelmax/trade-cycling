@@ -29,10 +29,7 @@
   ],
   "depends": {
     "fabricloader": "${fabric_loader_dependency}",
-    "minecraft": [
-      "1.21",
-      "1.21.1"
-    ]
+    "minecraft": "${minecraft_dependency}"
   },
   "breaks": {
     "easy_villagers": "*",
