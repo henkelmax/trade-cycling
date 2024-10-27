@@ -19,9 +19,13 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 public class ForgeTradeCyclingClientMod extends TradeCyclingClientMod {
 
-    public ForgeTradeCyclingClientMod() {
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::clientSetup);
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::onRegisterKeyBinds);
+    protected FMLJavaModLoadingContext context;
+
+    public ForgeTradeCyclingClientMod(FMLJavaModLoadingContext context) {
+        this.context = context;
+        context.getModEventBus().addListener(this::clientSetup);
+        context.getModEventBus().addListener(this::onRegisterKeyBinds);
+        CONFIG = createClientConfig();
     }
 
     public void clientSetup(FMLClientSetupEvent event) {
@@ -50,7 +54,7 @@ public class ForgeTradeCyclingClientMod extends TradeCyclingClientMod {
     public TradeCyclingClientConfig createClientConfig() {
         ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
         ForgeTradeCyclingClientConfig config = new ForgeTradeCyclingClientConfig(builder);
-        ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, builder.build());
+        context.registerConfig(ModConfig.Type.CLIENT, builder.build());
         return config;
     }
 

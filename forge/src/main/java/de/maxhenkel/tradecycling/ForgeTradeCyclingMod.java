@@ -17,11 +17,11 @@ public class ForgeTradeCyclingMod extends TradeCyclingMod {
 
     private ForgeTradeCyclingClientMod clientMod;
 
-    public ForgeTradeCyclingMod() {
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::commonSetup);
+    public ForgeTradeCyclingMod(FMLJavaModLoadingContext context) {
+        context.getModEventBus().addListener(this::commonSetup);
 
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
-            clientMod = new ForgeTradeCyclingClientMod();
+            clientMod = new ForgeTradeCyclingClientMod(context);
         });
     }
 

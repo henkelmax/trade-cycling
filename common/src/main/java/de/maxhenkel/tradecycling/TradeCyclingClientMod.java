@@ -21,7 +21,7 @@ public abstract class TradeCyclingClientMod {
     public static final KeyMapping CYCLE_TRADES_KEY = new KeyMapping("key.trade_cycling.cycle_trades", GLFW.GLFW_KEY_C, "key.categories.inventory");
 
     public TradeCyclingClientMod() {
-        CONFIG = createClientConfig();
+
     }
 
     public void clientInit() {

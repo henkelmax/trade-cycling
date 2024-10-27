@@ -23,6 +23,7 @@ public class NeoForgeTradeCyclingClientMod extends TradeCyclingClientMod {
     public NeoForgeTradeCyclingClientMod(IEventBus eventBus) {
         eventBus.addListener(this::clientSetup);
         eventBus.addListener(this::onRegisterKeyBinds);
+        CONFIG = createClientConfig();
     }
 
     public void clientSetup(FMLClientSetupEvent event) {

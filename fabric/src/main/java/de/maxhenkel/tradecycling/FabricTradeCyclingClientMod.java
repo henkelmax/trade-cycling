@@ -17,6 +17,7 @@ public class FabricTradeCyclingClientMod extends TradeCyclingClientMod implement
 
     public FabricTradeCyclingClientMod() {
         instance = this;
+        CONFIG = createClientConfig();
     }
 
     @Override
