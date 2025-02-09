@@ -4,6 +4,7 @@ import de.maxhenkel.tradecycling.net.CycleTradesPacket;
 import net.minecraft.network.protocol.PacketFlow;
 import net.minecraft.server.level.ServerPlayer;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.fml.loading.FMLEnvironment;
@@ -36,6 +37,11 @@ public class NeoForgeTradeCyclingMod extends TradeCyclingMod {
                 context.enqueueWork(() -> onCycleTrades(player));
             }
         });
+    }
+
+    @Override
+    public boolean isModLoaded(String modId) {
+        return ModList.get().isLoaded(modId);
     }
 
 }
