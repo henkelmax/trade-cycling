@@ -1,2 +1,1 @@
-- Added Portuguese translation
-- Added Turkish translation
+- Added compatibility with Visible Traders

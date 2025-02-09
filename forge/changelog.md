@@ -1,2 +1,0 @@
-- Added Portuguese translation
-- Added Turkish translation
