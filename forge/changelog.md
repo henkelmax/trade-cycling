@@ -1,0 +1,1 @@
+- Fixed being able to cycle trades on villagers with custom trades
