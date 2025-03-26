@@ -1,1 +1,1 @@
-- Fixed being able to cycle trades on villagers with custom trades
+- Updated to 1.21.5

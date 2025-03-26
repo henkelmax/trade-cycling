@@ -61,11 +61,11 @@ public abstract class TradeCyclingMod {
     }
 
     private static void sendOffers(ServerPlayer player, int containerId, Villager villager) {
-        boolean success = VisibleTraders.sendTrades(player, villager, containerId, villager.getOffers(), villager.getVillagerData().getLevel(), villager.getVillagerXp(), villager.showProgressBar(), villager.canRestock());
+        boolean success = VisibleTraders.sendTrades(player, villager, containerId, villager.getOffers(), villager.getVillagerData().level(), villager.getVillagerXp(), villager.showProgressBar(), villager.canRestock());
         if (success) {
             return;
         }
-        player.sendMerchantOffers(containerId, villager.getOffers(), villager.getVillagerData().getLevel(), villager.getVillagerXp(), villager.showProgressBar(), villager.canRestock());
+        player.sendMerchantOffers(containerId, villager.getOffers(), villager.getVillagerData().level(), villager.getVillagerXp(), villager.showProgressBar(), villager.canRestock());
     }
 
 }
