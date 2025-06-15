@@ -7,7 +7,7 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.AbstractButton;
 import net.minecraft.client.gui.narration.NarrationElementOutput;
 import net.minecraft.client.gui.screens.inventory.MerchantScreen;
-import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.MerchantMenu;
@@ -35,10 +35,10 @@ public class CycleTradesButton extends AbstractButton {
     public void renderWidget(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
         visible = canCycle(screen.getMenu());
         if (isHovered) {
-            guiGraphics.blit(RenderType::guiTextured, ARROW_BUTTON, getX(), getY(), 0, 14, WIDTH, HEIGHT, 32, 32);
-            guiGraphics.renderTooltip(Minecraft.getInstance().font, Collections.singletonList(Component.translatable("tooltip.trade_cycling.cycle_trades").getVisualOrderText()), mouseX, mouseY);
+            guiGraphics.blit(RenderPipelines.GUI_TEXTURED, ARROW_BUTTON, getX(), getY(), 0, 14, WIDTH, HEIGHT, 32, 32);
+            guiGraphics.setTooltipForNextFrame(Minecraft.getInstance().font, Collections.singletonList(Component.translatable("tooltip.trade_cycling.cycle_trades").getVisualOrderText()), mouseX, mouseY);
         } else {
-            guiGraphics.blit(RenderType::guiTextured, ARROW_BUTTON, getX(), getY(), 0, 0, WIDTH, HEIGHT, 32, 32);
+            guiGraphics.blit(RenderPipelines.GUI_TEXTURED, ARROW_BUTTON, getX(), getY(), 0, 0, WIDTH, HEIGHT, 32, 32);
         }
     }
 
