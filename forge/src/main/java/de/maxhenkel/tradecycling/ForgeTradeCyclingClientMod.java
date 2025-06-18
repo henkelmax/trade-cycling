@@ -10,9 +10,6 @@ import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
 import net.minecraftforge.client.event.ScreenEvent;
 import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -23,19 +20,15 @@ public class ForgeTradeCyclingClientMod extends TradeCyclingClientMod {
 
     public ForgeTradeCyclingClientMod(FMLJavaModLoadingContext context) {
         this.context = context;
-        context.getModEventBus().addListener(this::clientSetup);
-        context.getModEventBus().addListener(this::onRegisterKeyBinds);
+        FMLClientSetupEvent.getBus(context.getModBusGroup()).addListener(this::clientSetup);
+        RegisterKeyMappingsEvent.getBus(context.getModBusGroup()).addListener(this::onRegisterKeyBinds);
+        ScreenEvent.Init.Post.BUS.addListener(this::onInitScreen);
+        InputEvent.Key.BUS.addListener(this::onKeyInput);
         CONFIG = createClientConfig();
     }
 
     public void clientSetup(FMLClientSetupEvent event) {
         clientInit();
-    }
-
-    @Override
-    public void clientInit() {
-        super.clientInit();
-        MinecraftForge.EVENT_BUS.register(this);
     }
 
     @Override
@@ -58,12 +51,10 @@ public class ForgeTradeCyclingClientMod extends TradeCyclingClientMod {
         return config;
     }
 
-    @SubscribeEvent
     public void onInitScreen(ScreenEvent.Init.Post event) {
         onOpenScreen(event.getScreen(), event::addListener);
     }
 
-    @SubscribeEvent
     public void onKeyInput(InputEvent.Key event) {
         onCycleKeyPressed(event.getKey(), event.getScanCode(), event.getAction());
     }

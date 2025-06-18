@@ -1,14 +1,12 @@
 package de.maxhenkel.tradecycling;
 
 import de.maxhenkel.tradecycling.net.CycleTradesPacket;
-import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.event.network.CustomPayloadEvent;
-import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModList;
-import net.minecraftforge.fml.ModLoader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fml.loading.FMLEnvironment;
 import net.minecraftforge.network.ChannelBuilder;
 import net.minecraftforge.network.EventNetworkChannel;
 
@@ -20,11 +18,11 @@ public class ForgeTradeCyclingMod extends TradeCyclingMod {
     private ForgeTradeCyclingClientMod clientMod;
 
     public ForgeTradeCyclingMod(FMLJavaModLoadingContext context) {
-        context.getModEventBus().addListener(this::commonSetup);
+        FMLCommonSetupEvent.getBus(context.getModBusGroup()).addListener(this::commonSetup);
 
-        DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
+        if (FMLEnvironment.dist.isClient()) {
             clientMod = new ForgeTradeCyclingClientMod(context);
-        });
+        }
     }
 
     public void commonSetup(FMLCommonSetupEvent event) {
