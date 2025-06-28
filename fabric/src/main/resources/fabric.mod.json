@@ -36,6 +36,6 @@
     "fabric-api": "${fabric_api_dependency_breaks}"
   },
   "suggests": {
-    "visibletraders": ">=0.1.0.1"
+    "visibletraders": ">=0.1.0.2"
   }
 }
