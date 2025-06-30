@@ -14,9 +14,9 @@ import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.InputEvent;
 import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
 import net.neoforged.neoforge.client.event.ScreenEvent;
+import net.neoforged.neoforge.client.network.ClientPacketDistributor;
 import net.neoforged.neoforge.common.ModConfigSpec;
 import net.neoforged.neoforge.common.NeoForge;
-import net.neoforged.neoforge.network.PacketDistributor;
 
 public class NeoForgeTradeCyclingClientMod extends TradeCyclingClientMod {
 
@@ -40,7 +40,7 @@ public class NeoForgeTradeCyclingClientMod extends TradeCyclingClientMod {
     public void sendCycleTradesPacket() {
         ClientPacketListener connection = Minecraft.getInstance().getConnection();
         if (connection != null) {
-            PacketDistributor.sendToServer(new CycleTradesPacket());
+            ClientPacketDistributor.sendToServer(new CycleTradesPacket());
         }
     }
 

@@ -1,1 +1,1 @@
-- Fixed Visible Traders integration
+- Updated to 1.21.7
