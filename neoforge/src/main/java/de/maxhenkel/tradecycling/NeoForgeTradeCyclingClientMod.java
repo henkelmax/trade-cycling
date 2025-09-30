@@ -64,7 +64,7 @@ public class NeoForgeTradeCyclingClientMod extends TradeCyclingClientMod {
 
     @SubscribeEvent
     public void onKeyInput(InputEvent.Key event) {
-        onCycleKeyPressed(event.getKey(), event.getScanCode(), event.getAction());
+        onCycleKeyPressed(event.getKeyEvent(), event.getAction());
     }
 
 }

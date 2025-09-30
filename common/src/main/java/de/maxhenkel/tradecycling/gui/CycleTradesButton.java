@@ -7,6 +7,7 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.AbstractButton;
 import net.minecraft.client.gui.narration.NarrationElementOutput;
 import net.minecraft.client.gui.screens.inventory.MerchantScreen;
+import net.minecraft.client.input.InputWithModifiers;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -32,6 +33,11 @@ public class CycleTradesButton extends AbstractButton {
     }
 
     @Override
+    public void onPress(InputWithModifiers inputWithModifiers) {
+        onPress.accept(this);
+    }
+
+    @Override
     public void renderWidget(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
         visible = canCycle(screen.getMenu());
         if (isHovered) {
@@ -54,8 +60,4 @@ public class CycleTradesButton extends AbstractButton {
         return false;
     }
 
-    @Override
-    public void onPress() {
-        onPress.accept(this);
-    }
 }

@@ -20,7 +20,7 @@ public class NeoForgeTradeCyclingMod extends TradeCyclingMod {
         eventBus.addListener(this::commonSetup);
         eventBus.addListener(this::onRegisterPayloadHandler);
 
-        if (FMLEnvironment.dist.isClient()) {
+        if (FMLEnvironment.getDist().isClient()) {
             clientMod = new NeoForgeTradeCyclingClientMod(eventBus);
         }
     }

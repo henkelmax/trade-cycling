@@ -9,6 +9,7 @@ import net.minecraft.client.gui.components.Renderable;
 import net.minecraft.client.gui.components.events.GuiEventListener;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.MerchantScreen;
+import net.minecraft.client.input.KeyEvent;
 import net.minecraft.client.resources.sounds.SimpleSoundInstance;
 import net.minecraft.sounds.SoundEvents;
 import org.lwjgl.glfw.GLFW;
@@ -18,7 +19,7 @@ import java.util.function.Consumer;
 public abstract class TradeCyclingClientMod {
 
     public static TradeCyclingClientConfig CONFIG;
-    public static final KeyMapping CYCLE_TRADES_KEY = new KeyMapping("key.trade_cycling.cycle_trades", GLFW.GLFW_KEY_C, "key.categories.inventory");
+    public static final KeyMapping CYCLE_TRADES_KEY = new KeyMapping("key.trade_cycling.cycle_trades", GLFW.GLFW_KEY_C, KeyMapping.Category.INVENTORY);
 
     public TradeCyclingClientMod() {
 
@@ -66,8 +67,8 @@ public abstract class TradeCyclingClientMod {
         eventConsumer.accept((T) new CycleTradesButton(posX, s.getTopPos() + 8, b -> sendCycleTradesPacket(), merchantScreen));
     }
 
-    public void onCycleKeyPressed(int key, int scanCode, int action) {
-        if (!CYCLE_TRADES_KEY.matches(key, scanCode) || action != 1) {
+    public void onCycleKeyPressed(KeyEvent event, int action) {
+        if (!CYCLE_TRADES_KEY.matches(event) || action != 1) {
             return;
         }
 
