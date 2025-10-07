@@ -22,7 +22,7 @@ public class ForgeTradeCyclingClientMod extends TradeCyclingClientMod {
     public ForgeTradeCyclingClientMod(FMLJavaModLoadingContext context) {
         this.context = context;
         FMLClientSetupEvent.getBus(context.getModBusGroup()).addListener(this::clientSetup);
-        RegisterKeyMappingsEvent.getBus(context.getModBusGroup()).addListener(this::onRegisterKeyBinds);
+        RegisterKeyMappingsEvent.BUS.addListener(this::onRegisterKeyBinds);
         ScreenEvent.Init.Post.BUS.addListener(this::onInitScreen);
         InputEvent.Key.BUS.addListener(this::onKeyInput);
         CONFIG = createClientConfig();
