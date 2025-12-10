@@ -5,7 +5,7 @@ import de.maxhenkel.tradecycling.mixin.VillagerAccessor;
 import de.maxhenkel.tradecycling.mixin.MerchantMenuAccessor;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.ai.memory.MemoryModuleType;
-import net.minecraft.world.entity.npc.Villager;
+import net.minecraft.world.entity.npc.villager.Villager;
 import net.minecraft.world.inventory.MerchantMenu;
 import net.minecraft.world.item.trading.Merchant;
 import org.apache.logging.log4j.LogManager;

@@ -1,7 +1,7 @@
 package de.maxhenkel.tradecycling.compatibility;
 
 import de.maxhenkel.tradecycling.TradeCyclingMod;
-import net.minecraft.world.entity.npc.Villager;
+import net.minecraft.world.entity.npc.villager.Villager;
 import net.minecraft.world.item.trading.MerchantOffers;
 
 import javax.annotation.Nullable;

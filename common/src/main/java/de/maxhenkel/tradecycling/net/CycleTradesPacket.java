@@ -4,11 +4,11 @@ import de.maxhenkel.tradecycling.TradeCyclingMod;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 
 public class CycleTradesPacket implements CustomPacketPayload {
 
-    public static final Type<CycleTradesPacket> CYCLE_TRADES = new CustomPacketPayload.Type<>(ResourceLocation.fromNamespaceAndPath(TradeCyclingMod.MODID, "cycle_trades"));
+    public static final Type<CycleTradesPacket> CYCLE_TRADES = new CustomPacketPayload.Type<>(Identifier.fromNamespaceAndPath(TradeCyclingMod.MODID, "cycle_trades"));
 
     public static final StreamCodec<RegistryFriendlyByteBuf, CycleTradesPacket> CODEC = new StreamCodec<>() {
         @Override
