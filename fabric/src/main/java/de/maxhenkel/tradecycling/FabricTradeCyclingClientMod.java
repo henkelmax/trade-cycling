@@ -3,12 +3,12 @@ package de.maxhenkel.tradecycling;
 import de.maxhenkel.configbuilder.ConfigBuilder;
 import de.maxhenkel.tradecycling.config.FabricTradeCyclingClientConfig;
 import de.maxhenkel.tradecycling.config.TradeCyclingClientConfig;
-import de.maxhenkel.tradecycling.mixin.ScreenAccessor;
 import de.maxhenkel.tradecycling.net.CycleTradesPacket;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.client.screen.v1.ScreenEvents;
+import net.fabricmc.fabric.api.client.screen.v1.Screens;
 import net.fabricmc.loader.api.FabricLoader;
 
 public class FabricTradeCyclingClientMod extends TradeCyclingClientMod implements ClientModInitializer {
@@ -23,10 +23,8 @@ public class FabricTradeCyclingClientMod extends TradeCyclingClientMod implement
     public void onInitializeClient() {
         clientInit();
         ScreenEvents.AFTER_INIT.register((client, screen, scaledWidth, scaledHeight) -> {
-            ScreenAccessor screenAccessor = (ScreenAccessor) screen;
             onOpenScreen(screen, guiEventListener -> {
-                screenAccessor.getChildren().add(guiEventListener);
-                screenAccessor.getRenderables().add(guiEventListener);
+                Screens.getButtons(screen).add(guiEventListener);
             });
         });
     }
