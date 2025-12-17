@@ -1,1 +1,1 @@
-- Updated Simplified Chinese translation
+- Fixed compatibility with other mods
