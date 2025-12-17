@@ -1,1 +1,1 @@
-- Updated to 1.21.10
+- Fixed compatibility with other mods
