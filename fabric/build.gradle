@@ -1,4 +1,4 @@
-apply plugin: 'fabric-loom'
+apply plugin: 'net.fabricmc.fabric-loom'
 apply plugin: 'com.gradleup.shadow'
 apply plugin: 'de.maxhenkel.cursegradle'
 apply plugin: 'com.modrinth.minotaur'

@@ -15,7 +15,7 @@ public class FabricTradeCyclingMod extends TradeCyclingMod implements ModInitial
     }
 
     private void registerPacket() {
-        PayloadTypeRegistry.playC2S().register(CycleTradesPacket.CYCLE_TRADES, CycleTradesPacket.CODEC);
+        PayloadTypeRegistry.serverboundPlay().register(CycleTradesPacket.CYCLE_TRADES, CycleTradesPacket.CODEC);
         ServerPlayNetworking.registerGlobalReceiver(CycleTradesPacket.CYCLE_TRADES, (payload, context) -> context.player().level().getServer().execute(() -> onCycleTrades(context.player())));
     }
 

@@ -1,1 +1,1 @@
-- Fixed compatibility with other mods
+- Updated to 26.1
