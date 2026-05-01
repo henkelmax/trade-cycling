@@ -1,23 +1,21 @@
 package de.maxhenkel.tradecycling.compatibility;
 
 import de.maxhenkel.tradecycling.TradeCyclingMod;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.npc.villager.Villager;
-import net.minecraft.world.item.trading.MerchantOffers;
 
 import javax.annotation.Nullable;
 import java.lang.reflect.Method;
+import java.util.Arrays;
 
 public class VisibleTraders {
 
     @Nullable
     private static Method regenerateTrades;
     @Nullable
-    private static Method getMerchantOffers;
+    private static Method requestOffers;
 
-    @Nullable
-    private static Method getLevel;
-
-    public static void forceTradeGeneration(Villager villager) {
+    public static void regenerateTrades(Villager villager) {
         if (regenerateTrades == null) {
             return;
         }
@@ -29,29 +27,15 @@ public class VisibleTraders {
         }
     }
 
-    public static MerchantOffers getOffers(Villager villager) {
-        if (getMerchantOffers == null) {
-            return villager.getOffers();
+    public static void requestOffers(Villager villager, ServerPlayer player) {
+        if (requestOffers == null) {
+            return;
         }
         try {
-            return (MerchantOffers) getMerchantOffers.invoke(villager);
+            requestOffers.invoke(villager, player);
         } catch (Throwable e) {
-            TradeCyclingMod.LOGGER.error("Failed to regenerate visible traders trades", e);
-            getMerchantOffers = null;
-            return villager.getOffers();
-        }
-    }
-
-    public static int getLevel(Villager villager) {
-        if (getLevel == null) {
-            return villager.getVillagerData().level();
-        }
-        try {
-            return (int) getLevel.invoke(villager);
-        } catch (Throwable e) {
-            TradeCyclingMod.LOGGER.error("Failed to regenerate visible traders trades", e);
-            getLevel = null;
-            return villager.getVillagerData().level();
+            TradeCyclingMod.LOGGER.error("Failed to request offers", e);
+            requestOffers = null;
         }
     }
 
@@ -60,13 +44,12 @@ public class VisibleTraders {
             return;
         }
         regenerateTrades = getRegenerateMethod();
-        getMerchantOffers = getMerchantOffersMethod();
-        getLevel = getLevelMethod();
+        requestOffers = requestOffersMethod();
     }
 
     private static Method getRegenerateMethod() {
         try {
-            Method forceTradeGeneration = Villager.class.getDeclaredMethod("visibleTrades$regenerateTrades");
+            Method forceTradeGeneration = Arrays.stream(Villager.class.getDeclaredMethods()).filter(method -> method.getName().contains("visibleTrades$regenerateTrades")).findFirst().orElseThrow(() -> new RuntimeException("Could not find visible traders regenerate trades method"));
             forceTradeGeneration.setAccessible(true);
             return forceTradeGeneration;
         } catch (Throwable e) {
@@ -75,22 +58,11 @@ public class VisibleTraders {
         }
     }
 
-    private static Method getMerchantOffersMethod() {
+    private static Method requestOffersMethod() {
         try {
-            Method getMerchantOffers = Villager.class.getDeclaredMethod("visibleTraders$getCombinedOffers");
-            getMerchantOffers.setAccessible(true);
-            return getMerchantOffers;
-        } catch (Throwable e) {
-            TradeCyclingMod.LOGGER.error("Failed to initialize visible traders integration", e);
-            return null;
-        }
-    }
-
-    private static Method getLevelMethod() {
-        try {
-            Method getLevel = Villager.class.getDeclaredMethod("visibleTraders$getShiftedLevel");
-            getLevel.setAccessible(true);
-            return getLevel;
+            Method requestOffers = Arrays.stream(Villager.class.getDeclaredMethods()).filter(method -> method.getName().contains("visibleTraders$requestOffers")).findFirst().orElseThrow(() -> new RuntimeException("Could not find visible traders requestOffers method"));
+            requestOffers.setAccessible(true);
+            return requestOffers;
         } catch (Throwable e) {
             TradeCyclingMod.LOGGER.error("Failed to initialize visible traders integration", e);
             return null;

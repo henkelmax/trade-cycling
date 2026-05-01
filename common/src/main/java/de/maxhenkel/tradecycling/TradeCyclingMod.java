@@ -56,12 +56,9 @@ public abstract class TradeCyclingMod {
         villager.getOffers();
         villagerAccessor.invokeUpdateSpecialPrices(player);
         villager.setTradingPlayer(player);
-        VisibleTraders.forceTradeGeneration(villager);
-        sendOffers(player, container.containerId, villager);
-    }
-
-    private static void sendOffers(ServerPlayer player, int containerId, Villager villager) {
-        player.sendMerchantOffers(containerId, VisibleTraders.getOffers(villager), VisibleTraders.getLevel(villager), villager.getVillagerXp(), villager.showProgressBar(), villager.canRestock());
+        VisibleTraders.regenerateTrades(villager);
+        VisibleTraders.requestOffers(villager, player);
+        player.sendMerchantOffers(container.containerId, villager.getOffers(), villager.getVillagerData().level(), villager.getVillagerXp(), villager.showProgressBar(), villager.canRestock());
     }
 
 }
