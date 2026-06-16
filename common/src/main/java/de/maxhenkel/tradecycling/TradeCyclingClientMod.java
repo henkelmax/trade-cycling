@@ -72,7 +72,7 @@ public abstract class TradeCyclingClientMod {
         }
 
         Minecraft mc = Minecraft.getInstance();
-        Screen currentScreen = mc.screen;
+        Screen currentScreen = mc.gui.screen();
 
         if (!(currentScreen instanceof MerchantScreen screen)) {
             return;

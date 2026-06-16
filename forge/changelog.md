@@ -1,1 +1,1 @@
-- Fixed integration for Visible Traders
+- Updated to 26.2
