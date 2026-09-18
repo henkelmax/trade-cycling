@@ -1,1 +1,2 @@
-- Fixed integration for Visible Traders
+- Fixed cycle button disappearing when inserting an item
+- Fixed items being able to be bought for free
