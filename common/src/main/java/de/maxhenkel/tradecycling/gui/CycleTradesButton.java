@@ -1,7 +1,6 @@
 package de.maxhenkel.tradecycling.gui;
 
 import de.maxhenkel.tradecycling.TradeCyclingMod;
-import de.maxhenkel.tradecycling.mixin.MerchantMenuAccessor;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.AbstractButton;
@@ -54,10 +53,7 @@ public class CycleTradesButton extends AbstractButton {
     }
 
     public static boolean canCycle(MerchantMenu menu) {
-        if (menu instanceof MerchantMenuAccessor m) {
-            return menu.showProgressBar() && menu.getTraderXp() <= 0 && m.getTradeContainer().getActiveOffer() == null;
-        }
-        return false;
+        return menu.showProgressBar() && menu.getTraderXp() <= 0;
     }
 
 }

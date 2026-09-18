@@ -58,6 +58,7 @@ public abstract class TradeCyclingMod {
         villager.setTradingPlayer(player);
         VisibleTraders.forceTradeGeneration(villager);
         sendOffers(player, container.containerId, villager);
+        container.slotsChanged(merchantAccessor.getTradeContainer());
     }
 
     private static void sendOffers(ServerPlayer player, int containerId, Villager villager) {
