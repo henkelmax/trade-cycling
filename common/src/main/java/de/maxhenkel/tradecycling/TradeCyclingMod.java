@@ -59,6 +59,7 @@ public abstract class TradeCyclingMod {
         VisibleTraders.regenerateTrades(villager);
         VisibleTraders.requestOffers(villager, player);
         player.sendMerchantOffers(container.containerId, villager.getOffers(), villager.getVillagerData().level(), villager.getVillagerXp(), villager.showProgressBar(), villager.canRestock());
+        container.slotsChanged(merchantAccessor.getTradeContainer());
     }
 
 }
