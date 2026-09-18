@@ -1,1 +1,2 @@
-- Fixed compatibility with other mods
+- Fixed cycle button disappearing when inserting an item
+- Fixed items being able to be bought for free
