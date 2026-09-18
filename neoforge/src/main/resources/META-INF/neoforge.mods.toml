@@ -8,7 +8,7 @@ version = "${mod_version}"
 displayName = "Trade Cycling"
 updateJSONURL = "https://update.maxhenkel.de/neoforge/trade_cycling"
 displayURL = "https://www.curseforge.com/minecraft/mc-mods/trade-cycling"
-logoFile = "icon.png"
+bannerFile = "icon.png"
 authors = "Max Henkel"
 description = '''The trade cycling functionality from Easy Villagers.'''
 [[mixins]]

@@ -11,14 +11,14 @@ import net.minecraft.client.gui.screens.inventory.MerchantScreen;
 import net.minecraft.client.input.KeyEvent;
 import net.minecraft.client.resources.sounds.SimpleSoundInstance;
 import net.minecraft.sounds.SoundEvents;
-import org.lwjgl.glfw.GLFW;
+import org.lwjgl.sdl.SDLScancode;
 
 import java.util.function.Consumer;
 
 public abstract class TradeCyclingClientMod {
 
     public static TradeCyclingClientConfig CONFIG;
-    public static final KeyMapping CYCLE_TRADES_KEY = new KeyMapping("key.trade_cycling.cycle_trades", GLFW.GLFW_KEY_C, KeyMapping.Category.INVENTORY);
+    public static final KeyMapping CYCLE_TRADES_KEY = new KeyMapping("key.trade_cycling.cycle_trades", SDLScancode.SDL_SCANCODE_C, KeyMapping.Category.INVENTORY);
 
     public TradeCyclingClientMod() {
 
