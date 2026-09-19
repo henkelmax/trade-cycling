@@ -4,7 +4,6 @@ import de.maxhenkel.tradecycling.config.ForgeTradeCyclingClientConfig;
 import de.maxhenkel.tradecycling.config.TradeCyclingClientConfig;
 import io.netty.buffer.Unpooled;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.input.KeyEvent;
 import net.minecraft.client.multiplayer.ClientPacketListener;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.client.event.InputEvent;
@@ -57,7 +56,7 @@ public class ForgeTradeCyclingClientMod extends TradeCyclingClientMod {
     }
 
     public void onKeyInput(InputEvent.Key event) {
-        onCycleKeyPressed(new KeyEvent(event.getKey(), event.getScanCode(), event.getModifiers()), event.getAction());
+        onCycleKeyPressed(event.getInfo(), event.getAction());
     }
 
 }
