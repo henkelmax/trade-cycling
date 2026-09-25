@@ -11,6 +11,8 @@ displayURL = "https://www.curseforge.com/minecraft/mc-mods/trade-cycling"
 logoFile = "icon.png"
 authors = "Max Henkel"
 description = '''The trade cycling functionality from Easy Villagers.'''
+[[mixins]]
+config = "trade_cycling.mixins.json"
 [[dependencies.trade_cycling]]
 modId = "neoforge"
 type = "required"
