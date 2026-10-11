@@ -1,1 +1,1 @@
-- Fixed cycle button not appearing
+- Fixed trade cycling button not showing on servers
