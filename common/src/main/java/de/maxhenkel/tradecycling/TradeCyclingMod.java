@@ -37,7 +37,7 @@ public abstract class TradeCyclingMod {
         }
         Merchant merchant = merchantAccessor.getTrader();
 
-        if (container.getTraderXp() > 0 && merchantAccessor.getTradeContainer().getActiveOffer() != null) {
+        if (container.getTraderXp() > 0) {
             return;
         }
 
