@@ -38,12 +38,22 @@ public class CycleTradesButton extends AbstractButton {
 
     @Override
     public void extractContents(GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY, float partialTicks) {
-        visible = canCycle(screen.getMenu());
+        active = canCycle(screen.getMenu());
+        if (!active) {
+            return;
+        }
         if (isHovered) {
             guiGraphics.blit(RenderPipelines.GUI_TEXTURED, ARROW_BUTTON, getX(), getY(), 0, 14, WIDTH, HEIGHT, 32, 32);
             guiGraphics.setTooltipForNextFrame(Minecraft.getInstance().font, Collections.singletonList(Component.translatable("tooltip.trade_cycling.cycle_trades").getVisualOrderText()), mouseX, mouseY);
         } else {
             guiGraphics.blit(RenderPipelines.GUI_TEXTURED, ARROW_BUTTON, getX(), getY(), 0, 0, WIDTH, HEIGHT, 32, 32);
+        }
+    }
+
+    @Override
+    protected void handleCursor(GuiGraphicsExtractor guiGraphics) {
+        if (active) {
+            super.handleCursor(guiGraphics);
         }
     }
 

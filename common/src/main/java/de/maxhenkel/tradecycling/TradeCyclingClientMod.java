@@ -78,7 +78,7 @@ public abstract class TradeCyclingClientMod {
             return;
         }
 
-        if (!screen.getMenu().showProgressBar() || screen.getMenu().getTraderXp() > 0) {
+        if (!CycleTradesButton.canCycle(screen.getMenu())) {
             return;
         }
 
